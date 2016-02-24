@@ -1,5 +1,6 @@
 #include "HashTable.h"
 #include "Person.h"
+#include <iostream>
 
 using namespace std;
 
@@ -26,11 +27,11 @@ int HashTable::hash(string name, int seed = 0){
 bool HashTable::isExist(string name){
 	for(int i = 0; i< 201; i++){
 		int pos = hash(name, i);
-		if (hash[pos]->name == name){
+		if (table[pos].name == name){
 			return true;
 		}
-		if(hash[pos]->name == "")
-			return false
+		if(table[pos].name == "")
+			return false;
 	}
 
 	return false;
@@ -38,15 +39,15 @@ bool HashTable::isExist(string name){
 
 void HashTable::insert(string name, Person person) {
 	if(isExist(name)){
-		cout<< "person already present" << endl;
+		std::cout << "person already present" << std::endl;
 		return;
 	}
 
 	for(int i = 0; i < 201; i++){
 		int pos = hash(name, i);
-		if (table[pos]->name == ""){
-			table[pos]-> = name;
-			table[pos]-> person = person;
+		if (table[pos].name == ""){
+			table[pos].name = name;
+			table[pos].person = person;
 			break;
 		}
 	}	
@@ -57,20 +58,20 @@ void HashTable::insert(string name, Person person) {
 Person HashTable::lookup(string name){
 	for(int i = 0; i< 201; i++){
 		int pos = hash(name, i);
-		if (hash[pos]->name == name){
-			return hash[pos]->person;
+		if (table[pos].name == name){
+			return table[pos].person;
 		}
-		if(hash[pos]->name == "")
-			return NULL;
+		if(table[pos].name == "")
+			return Person();
 	}
 
-	return NULL;
+	return Person();
 
 }
 
 void HashTable::print(){
 	for(int i = 0; i < size; i++) {
-		if(table[i]->name == "")
+		if(table[i].name == "")
 			continue;
 		cout<<"(" << table[i].name << "," << table[i].person.getAge() << "," << table[i].person.getOccupation() << ")" << endl;
 	}
