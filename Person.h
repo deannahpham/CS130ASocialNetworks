@@ -13,8 +13,7 @@ public:
 	int getAge();
 	string getOccupation();
 	void print();
-	int location;
-	int getLocation(); 
+	int getLocation(string name); 
 	
 	struct Node{
 		string name;
@@ -25,6 +24,7 @@ private:
 	string name;
 	int age;
 	string occupation;
+	int location;
 
 };
 

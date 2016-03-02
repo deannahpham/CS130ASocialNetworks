@@ -20,7 +20,7 @@ string Person::getName() {
 	return this->name;
 }
 
-int Person::getAge(){
+int Person::getAge() {
 	return this->age;
 }
 
@@ -28,7 +28,7 @@ string Person::getOccupation() {
 	return this->occupation;
 }
 
-void Person::print(){
+void Person::print() {
 	cout << "Name: " << name << " Age: " << age << " Occupation: " << occupation << endl;
 }
 

@@ -1,4 +1,5 @@
 #include "HashTable.h"
+#include "Person.h"
 
 int main(int argc, char const *argv[])
 {
