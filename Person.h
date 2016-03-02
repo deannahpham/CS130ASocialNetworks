@@ -12,6 +12,7 @@ public:
 	string getName();
 	int getAge();
 	string getOccupation();
+	void print();
 
 private:
 	string name;

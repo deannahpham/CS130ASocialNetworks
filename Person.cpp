@@ -1,4 +1,5 @@
 #include "Person.h"
+#include <iostream>
 
 using namespace std;
 
@@ -24,4 +25,8 @@ int Person::getAge(){
 
 string Person::getOccupation() {
 	return this->occupation;
+}
+
+void Person::print(){
+	cout << "Name: " << name << " Age: " << age << " Occupation: " << occupation << endl;
 }

@@ -19,14 +19,15 @@ HashTable::HashTable() {
 int HashTable::hash(string name, int seed = 0){
 	int hash = seed;
 	for (int i = 0; i< name.length(); i++){
-		hash = hash * 101 + name[i];
+		hash = (hash * 101 + name[i])%size;
 	}
-	return hash % size;
+	return hash;
 }
 
 bool HashTable::isExist(string name){
 	for(int i = 0; i< 201; i++){
 		int pos = hash(name, i);
+		//cout << "position at " << pos << endl;
 		if (table[pos].name == name){
 			return true;
 		}
