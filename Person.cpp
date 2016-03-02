@@ -1,4 +1,5 @@
 #include "Person.h"
+#include "HashTable.h"
 #include <iostream>
 
 using namespace std;
@@ -29,4 +30,8 @@ string Person::getOccupation() {
 
 void Person::print(){
 	cout << "Name: " << name << " Age: " << age << " Occupation: " << occupation << endl;
+}
+
+int Person::getLocation(string name) {
+	return location = hash(name);
 }

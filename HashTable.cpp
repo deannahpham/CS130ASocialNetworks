@@ -5,7 +5,7 @@
 using namespace std;
 
 HashTable::HashTable() {
-	size = 201; 
+	size = 211; 
 	numItems = 0; 
 	table = new Node[size];
 	for(int i = 0; i < size; i++){
@@ -25,7 +25,7 @@ int HashTable::hash(string name, int seed = 0){
 }
 
 bool HashTable::isExist(string name){
-	for(int i = 0; i< 201; i++){
+	for(int i = 0; i< 211; i++){
 		int pos = hash(name, i);
 		//cout << "position at " << pos << endl;
 		if (table[pos].name == name){
@@ -44,7 +44,7 @@ void HashTable::insert(string name, Person person) {
 		return;
 	}
 
-	for(int i = 0; i < 201; i++){
+	for(int i = 0; i < 211; i++){
 		int pos = hash(name, i);
 		if (table[pos].name == ""){
 			table[pos].name = name;
@@ -57,7 +57,7 @@ void HashTable::insert(string name, Person person) {
 
 
 Person HashTable::lookup(string name){
-	for(int i = 0; i< 201; i++){
+	for(int i = 0; i< 211; i++){
 		int pos = hash(name, i);
 		if (table[pos].name == name){
 			return table[pos].person;

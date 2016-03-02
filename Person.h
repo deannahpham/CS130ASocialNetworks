@@ -13,11 +13,19 @@ public:
 	int getAge();
 	string getOccupation();
 	void print();
+	int location;
+	int getLocation(); 
+	
+	struct Node{
+		string name;
+		struct Node *next = NULL;
+	};
 
 private:
 	string name;
 	int age;
 	string occupation;
+
 };
 
 #endif
