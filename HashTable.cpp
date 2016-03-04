@@ -7,57 +7,83 @@ using namespace std;
 HashTable::HashTable() {
 	size = 211; 
 	numItems = 0; 
-	table = new Node[size];
+	table = new DataNode[size];
 	for(int i = 0; i < size; i++){
-		Node n = Node();
-		n.person = Person();
+		DataNode n = DataNode();
+		n.position = -1;
 		n.name = "";
+		n.friends = NULL;
 		table[i]=n;
 	}
 }
 
 int HashTable::hash(string name, int seed = 0){
 	int hash = seed;
-	for (int i = 0; i< name.length(); i++){
+	for (int i = 0; i< (int)name.length(); i++){
 		hash = (hash * 101 + name[i])%size;
 	}
 	return hash;
 }
 
-bool HashTable::isExist(string name){
-	for(int i = 0; i< 211; i++){
-		int pos = hash(name, i);
-		//cout << "position at " << pos << endl;
-		if (table[pos].name == name){
-			return true;
-		}
+int HashTable::isExist(string name){
+	int pos = hash(name);
+	for(int i = pos; i< 211; i++){
+		if (table[pos].name == name)
+			return pos;
 		if(table[pos].name == "")
-			return false;
+			return -1;
 	}
 
-	return false;
+	for(int i = 0; i < pos; i++){
+		if (table[pos].name == name)
+			return pos;
+		if(table[pos].name == "")
+			return -1;
+	}
+
+	return -1;
 }
 
-void HashTable::insert(string name, Person person) {
-	if(isExist(name)){
+void HashTable::insert(string name, AdjList *friends, int position) {
+	if(isExist(name) != -1){
 		std::cout << "person already present" << std::endl;
 		return;
 	}
 
-	for(int i = 0; i < 211; i++){
-		int pos = hash(name, i);
+	int pos = hash(name);
+	for(int i = pos; i < 211; i++){
+		//int pos = hash(name, i);
 		if (table[pos].name == ""){
 			table[pos].name = name;
-			table[pos].person = person;
-			break;
+			table[pos].position = position;
+			table[pos].friends = friends;
+			return;
 		}
 	}	
+
+	for(int i = 0; i < pos; i++){
+		if (table[pos].name == ""){
+			table[pos].name = name;
+			table[pos].position = position;
+			table[pos].friends = friends;
+			return;
+		}
+	}
 
 }
 
 
-Person HashTable::lookup(string name){
-	for(int i = 0; i< 211; i++){
+DataNode HashTable::lookup(string name){
+	int pos = isExist(name);
+
+	if(pos != -1)
+		return table[pos];
+	else{
+		cout << "Cannot find " << name << cout;
+		return DataNode();
+	}
+
+	/*for(int i = 0; i< 211; i++){
 		int pos = hash(name, i);
 		if (table[pos].name == name){
 			return table[pos].person;
@@ -66,7 +92,7 @@ Person HashTable::lookup(string name){
 			return Person();
 	}
 
-	return Person();
+	return Person();*/
 
 }
 
@@ -74,7 +100,11 @@ void HashTable::print(){
 	for(int i = 0; i < size; i++) {
 		if(table[i].name == "")
 			continue;
-		cout<<"(" << table[i].name << "," << table[i].person.getAge() << "," << table[i].person.getOccupation() << ")" << endl;
+		cout<<"(" << table[i].name << "," << table[i].position << ", [";
+		
+		table[i].friends->print();
+
+		cout << "])" << endl;
 	}
 }
 
