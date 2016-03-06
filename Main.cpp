@@ -2,6 +2,7 @@
 //#include "Person.h"
 #include "AdjList.h"
 #include <iostream>
+#include "ProfileData.h"
 
 using namespace std;
 
@@ -20,6 +21,9 @@ int main(int argc, char const *argv[])
 	table->insert("Alex", friends, 3);
 	table->insert("Angela", friends, 4);
 	table->print();
+
+	ProfileData *profileData = new ProfileData(); 
+
 
 
 	/* 

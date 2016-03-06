@@ -4,15 +4,21 @@
 #include <iostream>
 #include <fstream>
 
+using namespace std;
+
 class ProfileData{
 
 public:
 	ProfileData();
-	importFromFile(string fileName);
-	insert(string name, int age, string occupation);
+	void importFromFile(string fileName);
+	void insert(string name, int age, string occupation);
+	string extractData(string line, int *i);
+
+	void addToProfileData(string name, int age, string occupation, int position);
+
 
 private:
-
+	fstream outFile;
 
 };
 

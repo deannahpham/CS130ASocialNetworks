@@ -1,1 +1,3 @@
-hi
+Mary                21 Developer                     
+Alex                40 School Teacher                
+Deanna              21 Student                       
