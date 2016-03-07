@@ -32,6 +32,10 @@ int main(int argc, char const *argv[])
 	table->print();
 
 
+	profileData->getAge("Angela");
+	profileData->getOccupation("Deanna");
+
+
 
 	/* 
 	HashTable *table = new HashTable();

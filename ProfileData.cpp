@@ -8,12 +8,14 @@
 using namespace std;
 
 ProfileData::ProfileData(HashTable *table) {
+
 	
 	profileDataFile = "ProfileData.txt";
+	outFile.open(profileDataFile);
 
-	outFile.open(profileDataFile, ios::app);
 	this->table = table;
 	position = 0; 
+
 
 	importFromFile("input.txt");
 }
@@ -48,7 +50,7 @@ void ProfileData::addToProfileData(string name, int age, string occupation){
 		outFile << " ";
 	}
 	outFile << endl;
-
+	//outFile.close();
 	//outFile.seekp(pos);
 	//outFile<< name << " ";
 	//outFile.seekp(pos + 20 - name.length());
@@ -101,6 +103,7 @@ void ProfileData::importFromFile(string fileName){
 
 	cout << endl;
 	table -> print();
+	position--;
 }
 
 void ProfileData::insert(string name, int age, string occupation){
@@ -117,6 +120,52 @@ void ProfileData::insert(string name, int age, string occupation){
 
 
 }
+
+int ProfileData::getAge(string name){
+	int pos = table->lookup(name).position;
+	pos = pos*54+20;
+
+	int age;
+	outFile.seekg(pos);
+	outFile >> age;
+	cout << age << endl;
+	return age;
+}
+
+string ProfileData::getOccupation(string name){
+	int origPos = table->lookup(name).position;
+	//cout << "Alex pos " << origPos << endl;
+	int pos = origPos*54+23;
+	outFile.seekg(pos);
+
+
+	string occupation = "";
+
+	getline(outFile,occupation);
+
+
+	/*string part;
+
+	while(outFile.tellg() < pos+30){
+		cout << outFile.tellg() << endl;
+		outFile >> part;
+		cout << outFile.tellg() << endl;
+		occupation = occupation + part + " ";
+		//cout << occupation;
+	}*/
+
+	cout<< occupation<< endl;
+	return occupation;
+}
+
+
+
+
+
+
+
+
+
 
 
 

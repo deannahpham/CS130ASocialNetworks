@@ -17,6 +17,10 @@ public:
 	void addToProfileData(string name, int age, string occupation);
 	int getPosition(){return position;};
 
+	int getAge(string name);
+	string getOccupation(string name);
+
+
 private:
 	fstream outFile;
 	HashTable *table;
