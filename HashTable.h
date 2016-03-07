@@ -18,13 +18,13 @@ public:
 	void insert (string name, AdjList *friends, int position);
 	DataNode lookup(string name);
 	void print();
+	int isExist(string name);
 
 private:
 	DataNode* table;
 	int size;
 	int numItems;
 	int hash(string name, int seed);
-	int isExist(string name);
 };
 
 #endif

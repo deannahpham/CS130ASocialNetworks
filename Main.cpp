@@ -11,18 +11,25 @@ int main(int argc, char const *argv[])
 {
 
 	HashTable *table = new HashTable();
+	ProfileData *profileData = new ProfileData(table); 
 
 	AdjList *friends = new AdjList();
 	friends->insert("Deanna"); friends->insert("Shreyas"); 
 	friends->insert("Alex"); friends->insert("Angela");
 
-	table->insert("Deanna", friends, 1);
-	table->insert("Shreyas", friends, 2);
-	table->insert("Alex", friends, 3);
-	table->insert("Angela", friends, 4);
-	table->print();
+	profileData->insert("Deanna", 21, "Student");
+	table->insert("Deanna", friends, profileData->getPosition());
+	
+	profileData->insert("Shreyas", 19, "Student at UCSB");
+	table->insert("Shreyas", friends, profileData->getPosition());
+	
+	profileData->insert("Alex", 19, "Another Student");
+	table->insert("Alex", friends, profileData->getPosition());
 
-	ProfileData *profileData = new ProfileData(); 
+	profileData->insert("Angela", 20, "Microsoft Intern");
+	table->insert("Angela", friends, profileData->getPosition());
+
+	table->print();
 
 
 
