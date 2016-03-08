@@ -79,7 +79,7 @@ DataNode HashTable::lookup(string name){
 	if(pos != -1)
 		return table[pos];
 	else{
-		cout << "Cannot find " << name << cout;
+		cout << "Cannot find " << name;
 		return DataNode();
 	}
 
