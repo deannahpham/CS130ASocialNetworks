@@ -6,7 +6,7 @@ BINARIES=prog3
 
 all: ${BINARIES}
 
-prog3: HashTable.o AdjList.o ProfileData.o Main.o
+prog3: HashTable.o AdjList.o ProfileData.o BTree.o BTreeNode.o InnerNode.o LeafNode.o Main.o
 	${CXX} $^ -o $@
 
 clean:
