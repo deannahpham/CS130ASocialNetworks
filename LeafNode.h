@@ -7,21 +7,18 @@
 
 using namespace std;
 
-struct Node{
-	string name;
-	int position;
-
-};
 
 class LeafNode:public BTreeNode{
 public: 
-	Node *names; 
+	//Node *data; (is in BTreeNode.h)
+	//bool isLeaf;
 
 	LeafNode(){
-		names = new Node[L];
+		isLeaf = true; 
+		data = new Node[L];
 		for(int i = 0; i < L; i++){
-			names[i].name = "";
-			names[i].position = -1; 
+			data[i].name = "";
+			data[i].position = -1; 
 		}
 	}
 

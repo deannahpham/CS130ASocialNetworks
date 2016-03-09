@@ -3,6 +3,7 @@
 #include "AdjList.h"
 #include <iostream>
 #include "ProfileData.h"
+#include "BTree.h"
 
 using namespace std;
 
@@ -10,7 +11,15 @@ using namespace std;
 int main(int argc, char const *argv[])
 {
 
-	HashTable *table = new HashTable();
+	
+	BTree bTree = BTree();
+
+	bTree.insert("Deanna", 0);
+	bTree.print();
+
+
+
+	/*HashTable *table = new HashTable();
 	ProfileData *profileData = new ProfileData(table); 
 
 	AdjList *friends = new AdjList();
@@ -33,7 +42,7 @@ int main(int argc, char const *argv[])
 
 
 	profileData->getAge("Angela");
-	profileData->getOccupation("Deanna");
+	profileData->getOccupation("Deanna");*/
 
 
 

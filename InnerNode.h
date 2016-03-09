@@ -10,10 +10,12 @@ using namespace std;
 
 class InnerNode:public BTreeNode{
 public:
-	string *keys;
-	BTreeNode **next;
+	//string *keys; (is in BTreeNode.h)
+	//BTreeNode **next; (is in BTreeNode.h)
+	//bool isLeaf;
 
 	InnerNode() {
+		isLeaf = false;
 		keys =  new string[M-1];
 		for(int i = 0; i < M-1; i++){
 			keys[i] = "";

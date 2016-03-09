@@ -6,14 +6,27 @@
 
 using namespace std;
 
+
+struct Node{
+	string name;
+	int position;
+
+};
+
 class BTreeNode {
 protected:
 	int M = 5;
 	int L = 3; 
 
 
-private:
 
+public:
+
+	string *keys;
+	BTreeNode **next;
+	Node *data; 
+	bool isLeaf;
+	int numItems = 0; 
 
 };
 
