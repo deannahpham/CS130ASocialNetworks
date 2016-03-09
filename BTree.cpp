@@ -38,22 +38,29 @@ void BTree::print(){
 
 void BTree::percolate(string name, int position, BTreeNode* current){
 
-
-	if(current->isLeaf){
-		//return (LeafNode*)current;
-		insertIntoLeafNode(current, name, position);
-		if(current->numItems >= L)
-
-	}
-
 	int i = 0;
 	while(current->keys[i] < name){
 		i++;
 		if(current->keys[i] == "")
 			break;
+	}
+
+	BTreeNode* childNode = current->next[i];
+
+	if(childNode->isLeaf){
+		//return (LeafNode*)current;
+		insertIntoLeafNode(current, name, position);
+		if(current->numItems >= L){
+
+		}
 
 	}
-	findLeafToInsert(name, position, current->next[i]);
+	else{
+		findLeafToInsert(name, position, childNode);
+		if(childNode->numItems >= M){
+
+		}
+	}
 }
 
 void BTree::insertIntoLeafNode(LeafNode* leaf, string name, int position) {
@@ -71,3 +78,20 @@ void BTree::insertIntoLeafNode(LeafNode* leaf, string name, int position) {
 	leaf->numItems++;
 
 }
+
+LeafNode* BTree::splitLeaf(LeafNode* childNode){
+
+	LeafNode* newNode = new BTreeNode();
+
+	int half = childNode->numItems/2;
+	for(int i = half; i < childNode->numItems; i++){
+		newNode[i-half] = childNode[i];
+		childNode
+	}
+
+
+}
+
+
+
+
