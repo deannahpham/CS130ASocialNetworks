@@ -22,6 +22,8 @@ public:
 	void printLeaf(LeafNode* leaf);
 	void print();
 	void recPrint(BTreeNode* current, string str);
+	void printRange(string name1, string name2);
+	void printRangeRec(string name1, string name2, BTreeNode* current, bool* found1, bool* found2);
 
 
 private:

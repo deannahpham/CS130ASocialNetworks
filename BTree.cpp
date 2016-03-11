@@ -231,6 +231,69 @@ InnerNode* BTree::splitInnerNode(BTreeNode* node){
 
 }
 
+void BTree::printRange(string name1, string name2) {
+	bool * found1;
+	*found1 = false;
+	bool * found2;
+	*found2 = false;
+	printRangeRec(name1, name2, head, found1, found2);
+	delete found1; delete found2;
+}
+
+void BTree::printRangeRec(string name1, string name2, BTreeNode* current, bool* found1, bool* found2){
+
+	if(current->isLeaf){
+		//printLeaf((LeafNode*)current);
+		
+
+		for(int i =0; i< current->numItems; i++){
+			if(current->data[i].name == name1)
+				*found1 = true;
+			if(current->data[i].name == name2)
+				*found2 = true;
+			if(*found1 && !*found2)
+				cout << current->data[i].name << " ";
+			//cout << leaf->data[i].name << leaf->data[i].position <<endl;
+		}
+		cout<<endl;
+		//found1 = true;
+		return;
+
+	}
+
+	int i = 0;
+	while(current->keys[i] < name1){
+		i++;
+		if(current->keys[i] == "")
+			break;
+	}
+	printRangeRec(name1, name2, current->next[i], found1, found2);
+	
+	while(!*found2){
+		i++;
+		if(i > M)
+			break;
+		printRangeRec(name1, name2, current->next[i], found1, found2);
+	}
+
+	//printRangeRec(name1, name2, current->next[i]);
+	//for(i =0 ; i < current->numItems-1; i++){
+		//if(current->keys[i] < name1){
+			
+			//printRangeRec(name1, name2, current->next[i]);
+		//}
+	//}
+	//cout << "i val : " << i << endl;
+
+	//printRangeRec(name1,name2, current->next[i+1]);
+
+}
+
+
+
+
+
+
 
 
 
