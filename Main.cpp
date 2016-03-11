@@ -31,6 +31,28 @@ int main(int argc, char const *argv[])
 	bTree.insert("Zack",5);
 	bTree.insert("Zebra",6);
 	bTree.print();
+	bTree.insert("Yeezus", 6);
+	bTree.insert("Yolanda", 5);
+	bTree.print();
+	bTree.insert("Wilson",4);
+	bTree.insert("Tommy",5);
+	bTree.insert("Amr",6);
+	bTree.insert("Victor",4);
+	bTree.insert("Omid",5);
+	bTree.insert("Franklin",6);
+	bTree.insert("Sara",4);
+	bTree.insert("Karl",5);
+	bTree.insert("Erika",6);
+	bTree.insert("Awesome",4);
+	bTree.insert("Austin",5);
+	bTree.insert("Brenda",6);
+	bTree.insert("Brianna",4);
+	bTree.insert("Charles",5);
+	bTree.insert("Charmander",6);
+	bTree.insert("Bulvasaur",4);
+	bTree.insert("Charzard",5);
+	bTree.insert("Brock",6);
+	bTree.print();
 
 
 

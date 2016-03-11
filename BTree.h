@@ -15,12 +15,13 @@ class BTree {
 public:
 	BTree();
 	void insert(string name, int position);
-	void percolate(string name, int position, BTreeNode* current);
+	BTreeNode* percolate(string name, int position, BTreeNode* current);
 	void insertIntoLeafNode(LeafNode* leaf, string name, int position);
 	LeafNode* splitLeaf(LeafNode* childNode);
 	InnerNode* splitInnerNode(BTreeNode* node);
 	void printLeaf(LeafNode* leaf);
 	void print();
+	void recPrint(BTreeNode* current, string str);
 
 
 private:
