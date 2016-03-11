@@ -8,8 +8,8 @@ using namespace std;
 
 
 struct Node{
-	string name;
-	int position;
+	string name ="";
+	int position = -1;
 
 };
 

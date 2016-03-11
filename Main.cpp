@@ -15,6 +15,12 @@ int main(int argc, char const *argv[])
 	BTree bTree = BTree();
 
 	bTree.insert("Deanna", 0);
+	//bTree.print();
+	bTree.insert("Shreyas", 1);
+	//bTree.print();
+	bTree.insert("Alex",2);
+	//bTree.print();
+	bTree.insert("Angela",3);
 	bTree.print();
 
 

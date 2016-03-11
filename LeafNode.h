@@ -15,8 +15,8 @@ public:
 
 	LeafNode(){
 		isLeaf = true; 
-		data = new Node[L];
-		for(int i = 0; i < L; i++){
+		data = new Node[L+1];
+		for(int i = 0; i < L+1; i++){
 			data[i].name = "";
 			data[i].position = -1; 
 		}

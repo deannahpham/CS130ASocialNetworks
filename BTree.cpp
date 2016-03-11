@@ -22,31 +22,44 @@ void BTree::insert(string name, int position) {
 
 		head->data[0]= data;
 		head->numItems++;
+		return;
 	}
 
-	LeafNode* leaf = findLeafToInsert(name, head);
-	insertIntoLeafNode(leaf, name, position);
-
-
-
-
+	percolate(name, position,head);
 
 }
+
+void BTree::printLeaf(LeafNode* leaf){
+	for(int i =0; i< L+1; i++){
+		cout << leaf->data[i].name << leaf->data[i].position <<endl;
+	}
+	cout<<endl;
+}
+
 void BTree::print(){
-	cout << head->data[0].name << head->data[0].position; 
+	for(int i = 0; i< M; i++){
+		cout<< head->keys[i] << endl;
+	}
+	cout << head->next << endl;
+	printLeaf((LeafNode*)(head->next[0]));
+	printLeaf((LeafNode*)(head->next[1]));
+
 }
 
 void BTree::percolate(string name, int position, BTreeNode* current){
 
 	if(current->isLeaf){
-		insertIntoLeafNode(current,name,position);
+		insertIntoLeafNode((LeafNode*)current,name,position);
 		if(current->numItems > L){
-			LeafNode* newLeaf = splitLeaf(current);
+			LeafNode* newLeaf = splitLeaf((LeafNode*)current);
 			InnerNode* newInnerNode = new InnerNode();
 			newInnerNode->keys[0] = newLeaf->data[0].name;
 			newInnerNode->next[0] = current;
-			newInnerNode->next[1] = newLeaf; 
-			head = newInnerNode; 
+			//printLeaf((LeafNode*)newInnerNode->next[0]);
+			newInnerNode->next[1] = newLeaf;
+			head = (BTreeNode*)newInnerNode;
+			print(); 
+			//printLeaf((LeafNode*)head->next[1]);
 		}
 		return;
 	}
@@ -62,9 +75,20 @@ void BTree::percolate(string name, int position, BTreeNode* current){
 
 	if(childNode->isLeaf){
 		//return (LeafNode*)current;
-		insertIntoLeafNode(current, name, position);
+		insertIntoLeafNode((LeafNode*)childNode, name, position);
 		if(current->numItems > L){
+			LeafNode* newLeaf = splitLeaf((LeafNode*)childNode);
 
+			for(int j = M; j >i ; j--){
+				current->next[j] = current->next[j-1];
+			}
+
+			for(int j = M-1; j>i; j--){
+				current->keys[j] = current->keys[j-1];
+			}
+
+			current->next[i+1] = newLeaf;
+			current->keys[i+1] = newLeaf->data[0].name;
 		}
 
 	}
@@ -81,8 +105,11 @@ void BTree::insertIntoLeafNode(LeafNode* leaf, string name, int position) {
 	int i = 0;
 	while(leaf->data[i].name < name){
 		i++;
+		if(leaf->data[i].name == "")
+			break;
 	}
-	for(int j = i+1; j < L+1; j++)
+	
+	for(int j = L; j >i; j--)
 		leaf->data[j] = leaf->data[j-1];
 
 	Node newNode = Node();
@@ -91,17 +118,19 @@ void BTree::insertIntoLeafNode(LeafNode* leaf, string name, int position) {
 	leaf->data[i] = newNode; 
 	leaf->numItems++;
 
+	//print();
+
 }
 
 LeafNode* BTree::splitLeaf(LeafNode* childNode){
 
-	LeafNode* newNode = new LeafNode[L+1];
+	LeafNode* newNode = new LeafNode();
 
 	int half = childNode->numItems/2;
 	for(int i = half; i < childNode->numItems; i++){
-		newNode[i-half] = childNode[i];
-		LeafNode filler = LeafNode();
-		childNode[i] = filler; 
+		newNode->data[i-half] = childNode->data[i];
+		Node filler = Node();
+		childNode->data[i] = filler; 
 	}
 
 	childNode->numItems = half;
@@ -109,6 +138,21 @@ LeafNode* BTree::splitLeaf(LeafNode* childNode){
 
 	return newNode;
 
+
+}
+
+InnerNode* BTree::splitInnerNode(BTreeNode* node){
+	InnerNode* newNode = new InnerNode();
+
+	int half = node->numItems/2;
+	for(int i = half; i < node->numItems; i++) {
+		newNode->next[i-half] = node->next[i];
+	}
+
+	node->numItems= half;
+	newNode->numItems= half; 
+
+	return newNode; 
 
 }
 

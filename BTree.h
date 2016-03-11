@@ -17,7 +17,9 @@ public:
 	void insert(string name, int position);
 	void percolate(string name, int position, BTreeNode* current);
 	void insertIntoLeafNode(LeafNode* leaf, string name, int position);
-	BTreeNode* splitLeaf(BTreeNode* childNode);
+	LeafNode* splitLeaf(LeafNode* childNode);
+	InnerNode* splitInnerNode(BTreeNode* node);
+	void printLeaf(LeafNode* leaf);
 	void print();
 
 
