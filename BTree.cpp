@@ -39,10 +39,12 @@ void BTree::printLeaf(LeafNode* leaf){
 void BTree::print(){
 	for(int i = 0; i< M; i++){
 		cout<< head->keys[i] << endl;
+		cout << i << endl;
 	}
-	cout << head->next << endl;
-	printLeaf((LeafNode*)(head->next[0]));
-	printLeaf((LeafNode*)(head->next[1]));
+	cout << "Done" << endl;
+	///cout << head->next<< endl;
+	//printLeaf((LeafNode*)(head->next[0]));
+	//printLeaf((LeafNode*)(head->next[1]));
 
 }
 

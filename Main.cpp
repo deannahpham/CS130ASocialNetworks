@@ -21,7 +21,7 @@ int main(int argc, char const *argv[])
 	bTree.insert("Alex",2);
 	//bTree.print();
 	bTree.insert("Angela",3);
-	bTree.print();
+	//bTree.print();
 
 
 

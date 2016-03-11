@@ -14,18 +14,7 @@ public:
 	//BTreeNode **next; (is in BTreeNode.h)
 	//bool isLeaf;
 
-	InnerNode() {
-		isLeaf = false;
-		keys =  new string[M-1];
-		for(int i = 0; i < M-1; i++){
-			keys[i] = "";
-		}
-
-		next = new BTreeNode*[M];
-		for(int i = 0; i < M; i++){
-			next[i] = NULL;
-		}
-	}
+	InnerNode();
 
 private:
 
