@@ -12,8 +12,8 @@ InnerNode::InnerNode() {
 		keys[i] = "";
 	}
 
-	next = new BTreeNode*[M];
-	for(int i = 0; i < M; i++){
+	next = new BTreeNode*[M+1];
+	for(int i = 0; i < M+1; i++){
 		next[i] = NULL;
 	}
 }

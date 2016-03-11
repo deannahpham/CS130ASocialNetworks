@@ -30,6 +30,9 @@ void BTree::insert(string name, int position) {
 }
 
 void BTree::printLeaf(LeafNode* leaf){
+	if(leaf == NULL)
+		return;
+	cout << leaf->numItems << endl;
 	for(int i =0; i< L+1; i++){
 		cout << leaf->data[i].name << leaf->data[i].position <<endl;
 	}
@@ -38,13 +41,20 @@ void BTree::printLeaf(LeafNode* leaf){
 
 void BTree::print(){
 	for(int i = 0; i< M; i++){
-		cout<< head->keys[i] << endl;
-		cout << i << endl;
+		cout<< head->keys[i] << "At position" << i << endl;
+		//cout << i << endl;
 	}
-	cout << "Done" << endl;
 	///cout << head->next<< endl;
-	//printLeaf((LeafNode*)(head->next[0]));
-	//printLeaf((LeafNode*)(head->next[1]));
+	printLeaf((LeafNode*)(head->next[0]));
+	printLeaf((LeafNode*)(head->next[1]));
+	printLeaf((LeafNode*)(head->next[2]));
+	printLeaf((LeafNode*)(head->next[3]));
+	printLeaf((LeafNode*)(head->next[4]));
+	printLeaf((LeafNode*)(head->next[5]));
+
+
+
+
 
 }
 
@@ -78,10 +88,11 @@ void BTree::percolate(string name, int position, BTreeNode* current){
 	if(childNode->isLeaf){
 		//return (LeafNode*)current;
 		insertIntoLeafNode((LeafNode*)childNode, name, position);
-		if(current->numItems > L){
+		//cout << current->numItems
+		if(childNode->numItems > L){
 			LeafNode* newLeaf = splitLeaf((LeafNode*)childNode);
 
-			for(int j = M; j >i ; j--){
+			for(int j = M; j > i ; j--){
 				current->next[j] = current->next[j-1];
 			}
 
@@ -90,7 +101,7 @@ void BTree::percolate(string name, int position, BTreeNode* current){
 			}
 
 			current->next[i+1] = newLeaf;
-			current->keys[i+1] = newLeaf->data[0].name;
+			current->keys[i] = newLeaf->data[0].name;
 		}
 
 	}
