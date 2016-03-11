@@ -22,9 +22,9 @@ protected:
 
 public:
 
-	string *keys;
-	BTreeNode **next;
-	Node *data; 
+	string *keys; //for inner node
+	BTreeNode **next; //for inner node
+	Node *data; //for leaf node
 	bool isLeaf;
 	int numItems = 0; 
 
