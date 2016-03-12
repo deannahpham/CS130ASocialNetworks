@@ -53,7 +53,7 @@ int main(int argc, char const *argv[])
 	bTree.insert("charzard",5);
 	bTree.insert("brock",6);
 	bTree.print();
-	bTree.printRange("amr", "carl");
+	bTree.printRange("aaron", "zebra");
 
 
 
