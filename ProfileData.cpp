@@ -3,11 +3,12 @@
 #include <fstream>
 #include "AdjList.h"
 #include "HashTable.h"
+#include "BTree.h"
 //#include <cstring>
 
 using namespace std;
 
-ProfileData::ProfileData(HashTable *table) {
+ProfileData::ProfileData(HashTable *table, BTree *bTree) {
 
 	
 	profileDataFile = "ProfileData.txt";
@@ -106,12 +107,14 @@ void ProfileData::importFromFile(string fileName){
 	position--;
 }
 
-void ProfileData::insert(string name, int age, string occupation){
+void ProfileData::insert(string name, int age, string occupation, AdjList* friends){
 
 	if(table->isExist(name) == -1){
 		cout << "adding " << name << endl;
 		addToProfileData(name, age, occupation);
+		// CHECK TO SEE IF POSITION ++ is BEFORE OR AFTER
 		position++;
+		table->insert(name, friends, position);
 	}
 	else {
 		std::cout << "person already present " << name << std::endl;

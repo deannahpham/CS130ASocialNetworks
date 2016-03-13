@@ -242,11 +242,7 @@ void BTree::printRangeRec(string name1, string name2, BTreeNode* current, bool* 
 
 	if(current == NULL)
 		return;
-	//cout << "Fin" << endl;
 	if(current->isLeaf){
-		//printLeaf((LeafNode*)current);
-
-
 		for(int i =0; i< current->numItems; i++){
 			if(current->data[i].name >= name1 && !*found1){
 				*found1 = true;
@@ -260,10 +256,8 @@ void BTree::printRangeRec(string name1, string name2, BTreeNode* current, bool* 
 			else if(*found1 && !*found2){
 				cout << current->data[i].name << " ";
 			}
-			//cout << leaf->data[i].name << leaf->data[i].position <<endl;
 		}
 		cout<<endl;
-		//found1 = true;
 		return;
 
 	}
@@ -275,29 +269,14 @@ void BTree::printRangeRec(string name1, string name2, BTreeNode* current, bool* 
 		if(current->keys[i] == "")
 			break;
 	}
-	//cout << "The val of i is " << i << endl;
-	//void* ptr = current->next[i];
-	//cout << "IT WORKED" << endl;
-	printRangeRec(name1, name2, current->next[i], found1, found2);
+		printRangeRec(name1, name2, current->next[i], found1, found2);
 
 	while(!*found2){
 		i++;
-		//cout << "val of i " << i << endl;
 		if(i > M)
 			break;
 		printRangeRec(name1, name2, current->next[i], found1, found2);
 	}
-
-	//printRangeRec(name1, name2, current->next[i]);
-	//for(i =0 ; i < current->numItems-1; i++){
-		//if(current->keys[i] < name1){
-			
-			//printRangeRec(name1, name2, current->next[i]);
-		//}
-	//}
-	//cout << "i val : " << i << endl;
-
-	//printRangeRec(name1,name2, current->next[i+1]);
 
 }
 

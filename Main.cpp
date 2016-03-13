@@ -17,10 +17,11 @@ int main(int argc, char const *argv[])
 	//Initialize the BTree, ProfileData, and HashTable
 	//Make sure all these are connected and singleton'd 
 	HashTable *table = new HashTable();
-	ProfileData *profileData = new ProfileData(table); 
-	BTree *bTree = new BTree(); 
+	BTree *bTree = NULL;
+	ProfileData *profileData = new ProfileData(table, bTree); 
+	bTree = new BTree(profileData); 
 	
-
+	
 	/*BTree bTree = BTree();
 
 	bTree.insert("deanna", 0);
