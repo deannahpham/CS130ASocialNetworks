@@ -7,13 +7,14 @@
 #include "BTreeNode.h"
 #include "LeafNode.h"
 #include "InnerNode.h"
+#include "ProfileData.h"
 
 
 using namespace std;
 
 class BTree {
 public:
-	BTree();
+	BTree(ProfileData* profileData);
 	void insert(string name, int position);
 	BTreeNode* percolate(string name, int position, BTreeNode* current);
 	void insertIntoLeafNode(LeafNode* leaf, string name, int position);
@@ -30,7 +31,7 @@ private:
 	int M = 5;
 	int L = 3;
 	BTreeNode* head; 
-
+	ProfileData* profileData; 
 };
 
 

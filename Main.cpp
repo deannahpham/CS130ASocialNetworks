@@ -7,12 +7,21 @@
 
 using namespace std;
 
+//Functions that we can use
+void insert(HashTable* table, ProfileData *profileData, BTree *bTree, string name, int age, string occupation);
 
 int main(int argc, char const *argv[])
 {
 
+	//What main should do:
+	//Initialize the BTree, ProfileData, and HashTable
+	//Make sure all these are connected and singleton'd 
+	HashTable *table = new HashTable();
+	ProfileData *profileData = new ProfileData(table); 
+	BTree *bTree = new BTree(); 
 	
-	BTree bTree = BTree();
+
+	/*BTree bTree = BTree();
 
 	bTree.insert("deanna", 0);
 	//bTree.print();
@@ -53,7 +62,7 @@ int main(int argc, char const *argv[])
 	bTree.insert("charzard",5);
 	bTree.insert("brock",6);
 	bTree.print();
-	bTree.printRange("aaron", "zebra");
+	bTree.printRange("a", "z");*/
 
 
 
@@ -99,3 +108,17 @@ int main(int argc, char const *argv[])
 
 	table -> lookup("Alex").print();*/
 }
+
+void insert(HashTable* table, ProfileData *profileData, BTree *bTree, string name, int age, string occupation){
+
+}
+
+
+
+
+
+
+
+
+
+

@@ -2,13 +2,14 @@
 #include "BTreeNode.h"
 #include "LeafNode.h"
 #include "InnerNode.h"
+#include "ProfileData.h"
 
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-BTree::BTree(){
+BTree::BTree(ProfileData* profileData){
 	head = NULL;
 }
 
@@ -235,7 +236,6 @@ void BTree::printRange(string name1, string name2) {
 	bool found1 = false;
 	bool found2 = false;
 	printRangeRec(name1, name2, head, &found1, &found2);
-	//delete found1; delete found2;
 }
 
 void BTree::printRangeRec(string name1, string name2, BTreeNode* current, bool* found1, bool* found2){
@@ -248,13 +248,14 @@ void BTree::printRangeRec(string name1, string name2, BTreeNode* current, bool* 
 
 
 		for(int i =0; i< current->numItems; i++){
-			if(current->data[i].name == name1){
+			if(current->data[i].name >= name1 && !*found1){
 				*found1 = true;
 				cout << current->data[i].name << " ";
 			}
-			else if(current->data[i].name == name2){
+			else if(current->data[i].name >= name2 && !*found2){
 				*found2 = true;
-				cout << current->data[i].name << " ";
+				if(current->data[i].name == name2)
+					cout << current->data[i].name << " ";
 			}
 			else if(*found1 && !*found2){
 				cout << current->data[i].name << " ";
