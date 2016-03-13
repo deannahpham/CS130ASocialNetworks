@@ -21,7 +21,8 @@ int main(int argc, char const *argv[])
 
 	Organizer organizer(bTree, profileData, table);
 
-	organizer.importFromFile("input.txt");
+	//organizer.importFromFile("Generated1.txt");
+
 
 	AdjList *friends = new AdjList();
 	friends->insert("Deanna"); friends->insert("Shreyas"); 
@@ -44,6 +45,7 @@ int main(int argc, char const *argv[])
 	organizer.addFriend("Deanna Pham", "Mary");
 	organizer.listFriendInfo("Deanna Pham");
 	organizer.printAll();
+	organizer.printRange("Alex", "Shreyas"); 
 
 	/*BTree bTree = BTree();
 

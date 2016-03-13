@@ -25,13 +25,14 @@ public:
 	void recPrint(BTreeNode* current, string str);
 	void printRange(string name1, string name2);
 	void printRangeRec(string name1, string name2, BTreeNode* current, bool* found1, bool* found2);
+	BTreeNode* getRoot(){return head;};
 
 
 private:
 	int M = 5;
 	int L = 3;
 	BTreeNode* head; 
-	ProfileData* profileData; 
+	//ProfileData* profileData; 
 };
 
 

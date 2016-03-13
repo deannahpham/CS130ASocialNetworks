@@ -24,10 +24,14 @@ public:
 	void addFriend(string name1, string name2); 
 	void listFriendInfo(string name);
 	void printAll();
+	//void printInfo(string name);
+	void printRange(string name1, string name2);
+	void printRangeRec(string name1, string name2, BTreeNode* current, bool* found1, bool* found2);
 
 private:
 	string extractData(string line, int *i);
-
+	int L = 3;
+	int M = 5;
 
 	BTree *bTree;
 	ProfileData *profileData;

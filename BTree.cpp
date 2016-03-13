@@ -131,7 +131,7 @@ BTreeNode* BTree::percolate(string name, int position, BTreeNode* current){
 
 			current->next[i+1] = newLeaf;
 			current->keys[i] = newLeaf->data[0].name;
-			cout << "Current numItems " << current->numItems << endl;
+			//cout << "Current numItems " << current->numItems << endl;
 			current->numItems++;
 		}
 
@@ -247,14 +247,18 @@ void BTree::printRangeRec(string name1, string name2, BTreeNode* current, bool* 
 			if(current->data[i].name >= name1 && !*found1){
 				*found1 = true;
 				cout << current->data[i].name << " ";
+				//printFunction(current->data[i].name);
 			}
 			else if(current->data[i].name >= name2 && !*found2){
 				*found2 = true;
-				if(current->data[i].name == name2)
+				if(current->data[i].name == name2){
 					cout << current->data[i].name << " ";
+					//printFunction(current->data[i].name);
+				}
 			}
 			else if(*found1 && !*found2){
 				cout << current->data[i].name << " ";
+				//printFunction(current->data[i].name);
 			}
 		}
 		cout<<endl;
