@@ -1,5 +1,6 @@
 Mary                21 Developer                     
 Alex                40 School Teacher                
 Deanna              21 Student                       
-Shreyas             19 Student at UCSB               
-Angela              20 Microsoft Intern              
+Deanna Pham         21 Student                       
+Angela Yung         20 Microsoft intern              
+Shreyas             19 unemployed                    

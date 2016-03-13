@@ -1,7 +1,7 @@
 #ifndef PROFILE_DATA
 #define PROFILE_DATA
 #include "HashTable.h"
-#include "BTree.h"
+//#include "BTree.h"
 
 #include <iostream>
 #include <fstream>
@@ -11,20 +11,17 @@ using namespace std;
 class ProfileData{
 
 public:
-	ProfileData(HashTable *table, BTree *bTree);
-	void importFromFile(string fileName);
-	void insert(string name, int age, string occupation, AdjList* friends);
-	string extractData(string line, int *i);
+	ProfileData();
+	void insert(string name, int age, string occupation);
 	void addToProfileData(string name, int age, string occupation);
 	int getPosition(){return position;};
 
-	int getAge(string name);
-	string getOccupation(string name);
+	int getAge(int pos);
+	string getOccupation(int origPos);
 
 
 private:
 	fstream outFile;
-	HashTable *table;
 	int position;
 	string profileDataFile;
 

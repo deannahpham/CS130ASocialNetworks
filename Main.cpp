@@ -4,11 +4,10 @@
 #include <iostream>
 #include "ProfileData.h"
 #include "BTree.h"
+#include "Organizer.h"
 
 using namespace std;
 
-//Functions that we can use
-void insert(HashTable* table, ProfileData *profileData, BTree *bTree, string name, int age, string occupation);
 
 int main(int argc, char const *argv[])
 {
@@ -17,11 +16,35 @@ int main(int argc, char const *argv[])
 	//Initialize the BTree, ProfileData, and HashTable
 	//Make sure all these are connected and singleton'd 
 	HashTable *table = new HashTable();
-	BTree *bTree = NULL;
-	ProfileData *profileData = new ProfileData(table, bTree); 
-	bTree = new BTree(profileData); 
-	
-	
+	ProfileData *profileData = new ProfileData(); 
+	BTree *bTree = new BTree(); 
+
+	Organizer organizer(bTree, profileData, table);
+
+	organizer.importFromFile("input.txt");
+
+	AdjList *friends = new AdjList();
+	friends->insert("Deanna"); friends->insert("Shreyas"); 
+	friends->insert("Alex"); friends->insert("Angela Yung");
+
+
+	organizer.insert("Deanna Pham", 21, "Student", friends);
+	organizer.insert("Alex", 19, "A student", friends);
+	organizer.insert("Angela Yung", 20, "Microsoft intern",friends);
+	organizer.insert("Shreyas", 19, "unemployed", friends);
+
+	cout << "Deanna Pham's info: " << organizer.getAge("Deanna Pham") << "  " << organizer.getOccupation("Deanna Pham") << endl;
+	cout << "Mary's info: " << organizer.getAge("Mary") << "  " << organizer.getOccupation("Mary") << endl;
+
+	cout << "---------PRINTING THE HASHTABLE FROM HERE---------" << endl;
+	table->print();
+	cout << "---------PRINTING THE BTREE FROM HERE---------" << endl;
+	bTree->print();
+	organizer.listFriendInfo("Deanna Pham");
+	organizer.addFriend("Deanna Pham", "Mary");
+	organizer.listFriendInfo("Deanna Pham");
+	organizer.printAll();
+
 	/*BTree bTree = BTree();
 
 	bTree.insert("deanna", 0);
@@ -109,17 +132,5 @@ int main(int argc, char const *argv[])
 
 	table -> lookup("Alex").print();*/
 }
-
-void insert(HashTable* table, ProfileData *profileData, BTree *bTree, string name, int age, string occupation){
-
-}
-
-
-
-
-
-
-
-
 
 

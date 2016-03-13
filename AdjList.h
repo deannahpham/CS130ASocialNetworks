@@ -16,8 +16,6 @@ public:
 	AdjList();
 	void insert(string name);
 	void print();
-
-private:
 	FriendNode *head;
 
 };

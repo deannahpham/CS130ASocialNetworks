@@ -9,7 +9,7 @@
 
 using namespace std;
 
-BTree::BTree(ProfileData* profileData){
+BTree::BTree(){
 	head = NULL;
 }
 
@@ -99,7 +99,7 @@ BTreeNode* BTree::percolate(string name, int position, BTreeNode* current){
 			newInnerNode->next[1] = newLeaf;
 			newInnerNode->numItems = 2;
 			head = (BTreeNode*)newInnerNode;
-			print(); 
+			//print(); 
 			//printLeaf((LeafNode*)head->next[1]);
 		}
 		return NULL;

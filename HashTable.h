@@ -19,6 +19,7 @@ public:
 	DataNode lookup(string name);
 	void print();
 	int isExist(string name);
+	DataNode* getTable();
 
 private:
 	DataNode* table;

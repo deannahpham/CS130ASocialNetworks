@@ -108,7 +108,9 @@ void HashTable::print(){
 	}
 }
 
-
+DataNode* HashTable::getTable(){
+	return table;
+}
 
 
 
