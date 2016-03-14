@@ -13,6 +13,7 @@ ProfileData::ProfileData() {
 	
 	profileDataFile = "ProfileData.txt";
 	outFile.open(profileDataFile);
+	outFile.clear();
 
 	//this->table = table;
 	position = 0; 

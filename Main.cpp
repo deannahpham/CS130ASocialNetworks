@@ -20,8 +20,10 @@ int main(int argc, char const *argv[])
 	BTree *bTree = new BTree(); 
 
 	Organizer organizer(bTree, profileData, table);
-
-	organizer.importFromFile("Generated1.txt");
+	if(argc == 2){
+		//cout << argv[1] << endl;
+		organizer.importFromFile(argv[1]);
+	}
 
 
 	try{
@@ -48,7 +50,7 @@ int main(int argc, char const *argv[])
 			else if(str.compare("addFriend") == 0){
 				string line;
 				getline(cin,line);
-				//cout << line << endl;
+				cout << line << endl;
 
 				organizer.friendFromString(line);
 			}
