@@ -50,7 +50,7 @@ int main(int argc, char const *argv[])
 			else if(str.compare("addFriend") == 0){
 				string line;
 				getline(cin,line);
-				cout << line << endl;
+				//cout << line << endl;
 
 				organizer.friendFromString(line);
 			}
