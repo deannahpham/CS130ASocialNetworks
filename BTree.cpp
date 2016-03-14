@@ -245,7 +245,7 @@ void BTree::printRangeRec(string name1, string name2, BTreeNode* current, bool* 
 	int i = 0;
 	while(current->keys[i] <= name1){
 		i++;
-		cout << "The val of i is " << i << endl;
+		//cout << "The val of i is " << i << endl;
 		if(current->keys[i] == "")
 			break;
 	}
