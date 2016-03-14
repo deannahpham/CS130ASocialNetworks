@@ -65,6 +65,8 @@ int main(int argc, char const *argv[])
 				//cout << line << endl;
 				organizer.printRangeFromString(line);
 			}
+			else
+				cout << str << " is not a valid command";
 			cout << endl;
 		}
 	}
