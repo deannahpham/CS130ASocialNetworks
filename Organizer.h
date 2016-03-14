@@ -27,6 +27,9 @@ public:
 	//void printInfo(string name);
 	void printRange(string name1, string name2);
 	void printRangeRec(string name1, string name2, BTreeNode* current, bool* found1, bool* found2);
+	void insertFromString(string str);
+	void friendFromString(string str);
+	void printRangeFromString(string str);
 
 private:
 	string extractData(string line, int *i);

@@ -20,6 +20,7 @@ public:
 	void print();
 	int isExist(string name);
 	DataNode* getTable();
+	int getNumItems(){return numItems;};
 
 private:
 	DataNode* table;

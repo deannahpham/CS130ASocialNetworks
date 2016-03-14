@@ -28,15 +28,15 @@ int HashTable::hash(string name, int seed = 0){
 int HashTable::isExist(string name){
 	int pos = hash(name);
 	for(int i = pos; i< 211; i++){
-		if (table[pos].name == name)
-			return pos;
+		if (table[i].name == name)
+			return i;
 		if(table[pos].name == "")
 			return -1;
 	}
 
 	for(int i = 0; i < pos; i++){
-		if (table[pos].name == name)
-			return pos;
+		if (table[i].name == name)
+			return i;
 		if(table[pos].name == "")
 			return -1;
 	}
@@ -53,22 +53,28 @@ void HashTable::insert(string name, AdjList *friends, int position) {
 	int pos = hash(name);
 	for(int i = pos; i < 211; i++){
 		//int pos = hash(name, i);
-		if (table[pos].name == ""){
-			table[pos].name = name;
-			table[pos].position = position;
-			table[pos].friends = friends;
+		if (table[i].name == ""){
+			table[i].name = name;
+			table[i].position = position;
+			table[i].friends = friends;
+			numItems++;
+			//cout << "PERSON: " << name << " hashed at " << i << endl;
 			return;
 		}
 	}	
 
 	for(int i = 0; i < pos; i++){
-		if (table[pos].name == ""){
-			table[pos].name = name;
-			table[pos].position = position;
-			table[pos].friends = friends;
+		if (table[i].name == ""){
+			table[i].name = name;
+			table[i].position = position;
+			table[i].friends = friends;
+			numItems++;
+			//cout << "PERSON: " << name << " hashed at " << i << endl;
 			return;
 		}
 	}
+
+	//cout << "Reached the end for: " << name << endl;
 
 }
 

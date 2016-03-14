@@ -1,7 +1,7 @@
-Deanna Pham         21 Student                       
-Alex                19 A student                     
-Angela Yung         20 Microsoft intern              
-Shreyas             19 unemployed                    
+Wyatt               74 WET NURSE                     
+Dominic             18 WEIGHER                       
+Violet              77 BELL RINGER                   
+Ryan                17 ARCHIVIST                     
 Bentley             84 COUPER                        
 Liam                73 AULNAGER                      
 Thomas              76 WOODRANGER                    
@@ -73,3 +73,5 @@ Katherine           83 WATER CARRIER
 Adrian              34 BEAVER                        
 Lydia               79 COBBLER                       
 Isabelle            31 COAL HEAVER                   
+Giovanni            56 CEO                           
+Deanna Hoang PHam   21 student at ucsb               

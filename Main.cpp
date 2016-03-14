@@ -21,10 +21,61 @@ int main(int argc, char const *argv[])
 
 	Organizer organizer(bTree, profileData, table);
 
-	//organizer.importFromFile("Generated1.txt");
+	organizer.importFromFile("Generated1.txt");
 
 
-	AdjList *friends = new AdjList();
+	try{
+		while(true){
+			string str;
+			cin >> str;
+			if(cin.eof()) break;
+			if(str.compare("exit") == 0) break;
+			else if(str.compare("insert") == 0){
+				string line;
+				getline(cin,line);
+				organizer.insertFromString(line);
+				//cout << "line is " << line << endl;
+			}	
+			else if(str.compare("printAll") == 0){
+				organizer.printAll();
+			}
+			else if(str.compare("printBTree") == 0){
+				bTree->print();
+			}
+			else if(str.compare("printTable") == 0){
+				table->print();
+			}
+			else if(str.compare("addFriend") == 0){
+				string line;
+				getline(cin,line);
+				//cout << line << endl;
+
+				organizer.friendFromString(line);
+			}
+			else if(str.compare("listFriendInfo") == 0){
+				string name;
+				cin >> name;
+				organizer.listFriendInfo(name);
+			}
+			else if(str.compare("listInfo") == 0){
+				string line;
+				getline(cin,line);
+				//cout << line << endl;
+				organizer.printRangeFromString(line);
+			}
+			cout << endl;
+		}
+	}
+	catch(exception& ex){
+		cerr << ex.what() << endl;
+	}
+	//organizer.printAll();
+	//bTree->print();
+	//table->print();
+	//cout << "num Items: " << table->getNumItems() << endl;
+
+
+	/*AdjList *friends = new AdjList();
 	friends->insert("Deanna"); friends->insert("Shreyas"); 
 	friends->insert("Alex"); friends->insert("Angela Yung");
 
@@ -46,6 +97,7 @@ int main(int argc, char const *argv[])
 	organizer.listFriendInfo("Deanna Pham");
 	organizer.printAll();
 	organizer.printRange("Alex", "Shreyas"); 
+	*/
 
 	/*BTree bTree = BTree();
 

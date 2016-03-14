@@ -19,18 +19,13 @@ Organizer::Organizer(BTree *bTree,	ProfileData *profileData, HashTable *table){
 
 void Organizer::importFromFile(string fileName){
 	ifstream file (fileName, ios::in);
+	if(!file){
+		cout << "ERROR" << endl;
+		return;
+	}
 
-	while(!file.eof()){
-		string line;
-		if(file.is_open()){
-			//cout<< file.tellg() <<endl;
-			//file.seekg(0);
-			getline(file,line);
-			//cout << line;
-		}
-		else {
-			cout <<"error" <<endl;
-		}
+	string line;
+	while(getline(file,line)){
 		int i = 0;
 
 		string name = extractData(line, &i);
@@ -45,7 +40,7 @@ void Organizer::importFromFile(string fileName){
 		//cout << line.at(i) << endl;
 		profileData->insert(name, age, occupation);
 		//cout << "i is: " << i << "length is: " << line.length() << endl;
-		cout << "aborting at: " << name << endl;
+		//cout << "aborting at: " << name << endl;
 		AdjList* friends = new AdjList();
 		while(i < (int)line.length()){
 			string frnd = extractData(line, &i);
@@ -99,10 +94,23 @@ void Organizer::insert(string name, int age, string occupation, AdjList* friends
 }
 
 void Organizer::addFriend(string name1, string name2){
-	if(table->isExist(name1) == -1 || table->isExist(name2) == -1){
-		cout << "Person does not exists, cannot add friend" << endl;
+	if(table->isExist(name1) == -1){
+		cout << name1 << " does not exists, cannot add friend" << endl;
 		return;
 	}
+	if(table->isExist(name2) == -1){
+		cout << name2 << " does not exists, cannot add friend" << endl;
+		return;
+	}
+
+	FriendNode *frnds = table->lookup(name1).friends->head;
+	for(FriendNode* i = frnds; i!= NULL; i = i->next){
+		if(i->name == name2){
+			cout << name1 << " and " << name2 << " are already friends!" << endl;
+			return;
+		}
+	}
+
 	//FIX LATER ifname2 is already a friend of name1
 	table->lookup(name1).friends->insert(name2);
 	table->lookup(name2).friends->insert(name1);
@@ -176,7 +184,7 @@ void Organizer::printRangeRec(string name1, string name2, BTreeNode* current, bo
 	int i = 0;
 	while(current->keys[i] <= name1){
 		i++;
-		cout << "The val of i is " << i << endl;
+		//cout << "The val of i is " << i << endl;
 		if(current->keys[i] == "")
 			break;
 	}
@@ -191,16 +199,62 @@ void Organizer::printRangeRec(string name1, string name2, BTreeNode* current, bo
 
 }
 
+void Organizer::insertFromString(string str){
+	int i = 1;
 
+	string name = extractData(str, &i);
+	if(table->isExist(name) != -1){
+		cout << name << " Already Exists" << endl;
+		return;
+	}
+	//cout << name << endl;
+	i++;
+	int age = stoi(extractData(str, &i));
+	//cout << age << endl;
+	i++;
+	string occupation = extractData(str,&i);
+	//cout << occupation << endl;
+	i++;
+	//cout << line.at(i) << endl;
+	profileData->insert(name, age, occupation);
+	//cout << "i is: " << i << "length is: " << line.length() << endl;
+	//cout << "aborting at: " << name << endl;
+	AdjList* friends = new AdjList();
+	bTree->insert(name, profileData->getPosition()-1);
+	table->insert(name, friends, profileData->getPosition()-1);
 
+	while(i < (int)str.length()){
+		string frnd = extractData(str, &i);
+		addFriend(frnd, name);
+		i++;
+		//friends->insert(frnd);
+	}
+	
+	//friends->print();
 
+}
 
+void Organizer::friendFromString(string str){
+	int i = 1;
+	string name1 = extractData(str, &i);
+	//cout << name1;
+	i++;
+	string name2 = extractData(str, &i);
+	//cout << name2;
+	i++;
+	addFriend(name1,name2);
+}
 
-
-
-
-
-
+void Organizer::printRangeFromString(string str){
+	int i = 1;
+	string name1 = extractData(str, &i);
+	//cout << name1;
+	i++;
+	string name2 = extractData(str, &i);
+	//cout << name2;
+	i++;
+	printRange(name1,name2);
+}
 
 
 
